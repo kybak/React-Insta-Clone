@@ -65,8 +65,4 @@ const SearchBar = props => {
     );
 };
 
-SearchBar.propTypes = {
-    search: PropTypes.string
-};
-
 export default SearchBar;

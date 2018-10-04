@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import SearchBar from "./components/SearchBar/SearchBar";
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 import Root from './components/Elements/Root'
+import PostContainer from "./components/PostContainer/PostContainer";
+import dummyData from './data/dummy-data'
 
 
 /*const Container = styled.div`
@@ -21,9 +24,18 @@ class App extends Component {
         return (
             <Root>
                 <SearchBar/>
+                {dummyData.map(post => {
+                    return (
+                        <PostContainer key={post.id} post={post}/>
+                    )
+                })}
             </Root>
         );
     }
 }
+
+App.propTypes = {
+    search: PropTypes.string
+};
 
 export default App;
