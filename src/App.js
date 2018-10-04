@@ -15,8 +15,8 @@ class App extends Component {
 
     addComment = (e, id, comment) => {
         if (e.keyCode == 13) {
-            let posts = this.state.posts, ind = posts.findIndex(p => p.id === id), comment = document.querySelect('comment').target.value;
-            posts[ind].comments.push({username: "test", comment: comment});
+            let posts = this.state.posts, ind = posts.findIndex(p => p.id === id);
+            posts[ind].comments.push({username: "guest", text: comment});
             this.setState({posts: posts})
         }
 
@@ -31,7 +31,7 @@ class App extends Component {
                 <SearchBar/>
                 {posts.map(post => {
                     return (
-                        <PostContainer key={post.id} post={post} addComment={(id, comment) => this.addComment(id, comment)}/>
+                        <PostContainer key={post.id} post={post} addComment={(e, id, comment) => this.addComment(e, id, comment)}/>
                     )
                 })}
             </Root>

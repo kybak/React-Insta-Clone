@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {FlexRow, FlexColumn} from "../Elements/Flex";
 import styled from 'styled-components'
@@ -33,8 +33,10 @@ const Img = styled.div.attrs({
     width: 600px;
 `;
 
-class PostContainer {
+class PostContainer extends Component {
     constructor(props) {
+        super();
+
         this.state = {
             comment: ""
         }
