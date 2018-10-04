@@ -33,27 +33,39 @@ const Img = styled.div.attrs({
     width: 600px;
 `;
 
-const PostContainer = props => {
-    const {post} = props;
-    return (
-        <Post alignCenter justifyBetween>
-            <FlexRow alignCenter height="60px" width="full">
-                <Logo url={post.thumbnailUrl}/>
-                <b>{post.username}</b>
-            </FlexRow>
+class PostContainer {
+    constructor(props) {
+        this.state = {
+            comment: ""
+        }
+    }
 
-            <FlexRow>
-                <Img url={post.imageUrl}/>
-            </FlexRow>
+    render() {
+        const {post, addComment} = this.props;
 
-            <CommentSection likes={post.likes} comments={post.comments} timestamp={post.timestamp}/>
-        </Post>
-    );
+        return (
+            <Post alignCenter justifyBetween onKeyUp={e => addComment(e, post.id, this.state.comment)}>
+                <FlexRow alignCenter height="60px" width="full">
+                    <Logo url={post.thumbnailUrl}/>
+                    <b>{post.username}</b>
+                </FlexRow>
+
+                <FlexRow>
+                    <Img url={post.imageUrl}/>
+                </FlexRow>
+
+                <CommentSection likes={post.likes} comments={post.comments} timestamp={post.timestamp}/>
+            </Post>
+        );
+    }
+
 };
 
 
 PostContainer.propTypes = {
     post: PropTypes.shape({
+        addComment: PropTypes.function,
+        id: PropTypes.number.isRequired,
         username: PropTypes.string.isRequired,
         thumbnailUrl: PropTypes.string.isRequired,
         imageUrl: PropTypes.string.isRequired,

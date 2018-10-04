@@ -7,6 +7,7 @@ import moment from 'moment'
 
 const Comments = styled(FlexColumn)`
     padding: 15px;
+    padding-bottom: 5px;
     box-sizing: border-box;
 `;
 
@@ -25,7 +26,7 @@ const Comment = styled.input`
     height: 50px;
     width: 90%;
     border: none;
-    padding-left: 20px;
+    padding-left: 15px;
     box-sizing: border-box;
 `;
 
@@ -50,7 +51,7 @@ const CommentSection = props => {
 
             <FlexRow marginBottom="10px"><b>{likes} likes</b></FlexRow>
 
-            {props.comments.map(comment => {
+            {comments.map(comment => {
                 return (
                     <FlexRow marginTop="10px">
                         <b style={{marginRight: "10px"}}>{comment.username}</b>
@@ -66,7 +67,7 @@ const CommentSection = props => {
             <Divider/>
 
             <FlexRow width="full" alignCenter>
-                <Comment placeholder="Add a comment..."/>
+                <Comment placeholder="Add a comment..."/> {/*TODO add onChange here and lift state*/}
                 <Dot></Dot>
                 <Dot></Dot>
                 <Dot></Dot>

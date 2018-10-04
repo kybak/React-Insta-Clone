@@ -7,26 +7,31 @@ import PostContainer from "./components/PostContainer/PostContainer";
 import dummyData from './data/dummy-data'
 
 
-/*const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
-    background: #f1f1f1;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    width: 500px;
-    height: 600px;
-`;*/
-
 
 class App extends Component {
+    state = {
+        posts: dummyData
+    }
+
+    addComment = (e, id, comment) => {
+        if (e.keyCode == 13) {
+            let posts = this.state.posts, ind = posts.findIndex(p => p.id === id), comment = document.querySelect('comment').target.value;
+            posts[ind].comments.push({username: "test", comment: comment});
+            this.setState({posts: posts})
+        }
+
+    };
+
+
     render() {
+        const {posts} = this.state;
+
         return (
             <Root>
                 <SearchBar/>
-                {dummyData.map(post => {
+                {posts.map(post => {
                     return (
-                        <PostContainer key={post.id} post={post}/>
+                        <PostContainer key={post.id} post={post} addComment={(id, comment) => this.addComment(id, comment)}/>
                     )
                 })}
             </Root>
@@ -34,8 +39,5 @@ class App extends Component {
     }
 }
 
-App.propTypes = {
-    search: PropTypes.string
-};
 
 export default App;
