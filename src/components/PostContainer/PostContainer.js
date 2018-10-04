@@ -54,7 +54,7 @@ class PostContainer {
                     <Img url={post.imageUrl}/>
                 </FlexRow>
 
-                <CommentSection likes={post.likes} comments={post.comments} timestamp={post.timestamp}/>
+                <CommentSection likes={post.likes} comments={post.comments} timestamp={post.timestamp} changeComment={e => this.setState({comment: e.target.value})}/>
             </Post>
         );
     }

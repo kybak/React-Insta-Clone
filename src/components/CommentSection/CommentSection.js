@@ -39,7 +39,7 @@ const Dot = styled.div`
 `
 
 const CommentSection = props => {
-    const {likes, comments, timestamp} = props;
+    const {likes, comments, timestamp, changeComment} = props;
     let time = timestamp.replace("th", "");
 
     return (
@@ -67,7 +67,7 @@ const CommentSection = props => {
             <Divider/>
 
             <FlexRow width="full" alignCenter>
-                <Comment placeholder="Add a comment..."/> {/*TODO add onChange here and lift state*/}
+                <Comment placeholder="Add a comment..." onChange={e => changeComment(e)}/>
                 <Dot></Dot>
                 <Dot></Dot>
                 <Dot></Dot>
@@ -78,6 +78,7 @@ const CommentSection = props => {
 };
 
 CommentSection.propTypes = {
+    changeComment: PropTypes.function,
     likes: PropTypes.number,
     timestamp: PropTypes.string,
     comments: PropTypes.arrayOf(
