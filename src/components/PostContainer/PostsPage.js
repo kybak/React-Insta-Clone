@@ -11,8 +11,10 @@ class PostsPage extends Component {
 
     addComment = (e, id, comment) => {
         if (e.keyCode == 13) {
+            const username = localStorage.getItem('userName');
+
             let posts = this.state.posts, ind = posts.findIndex(p => p.id === id);
-            posts[ind].comments.push({username: "guest", text: comment});
+            posts[ind].comments.push({username: username, text: comment});
             this.setState({posts: posts})
         }
 
@@ -34,6 +36,5 @@ class PostsPage extends Component {
     }
 }
 
-PostsPage.propTypes = {};
 
 export default PostsPage;
