@@ -45,6 +45,8 @@ const Divider = styled.div`
 `
 
 const SearchBar = props => {
+    const {search} = props;
+
     return (
         <Bar height="65px" alignCenter justifyBetween>
             <FlexRow alignCenter>
@@ -53,7 +55,7 @@ const SearchBar = props => {
                 <Instagram src="instagram.svg" height={40} />
             </FlexRow>
 
-            <Search placeholder="Search posts"/>
+            <Search placeholder="Search posts" onKeyUp={e => search(e)}/>
 
             <FlexRow alignCenter>
                 <Action src="discover.svg" height={40} />

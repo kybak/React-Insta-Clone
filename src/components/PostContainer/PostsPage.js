@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import PostContainer from "./PostContainer";
 import dummyData from '../../data/dummy-data'
 
+
 class PostsPage extends Component {
     state = {
         posts: []
@@ -31,12 +32,18 @@ class PostsPage extends Component {
       this.setState(() => ({posts: posts}));
     };
 
+    search = val => {
+        let posts = val ? this.state.posts : dummyData;
+        posts = posts.filter(p => p.username.toLowerCase().includes(val));
+        this.setState(() => ({posts: posts}));
+    };
+
     render() {
         const {posts} = this.state;
 
         return (
             <>
-                <SearchBar/>
+                <SearchBar search={e => this.search(e.target.value)}/>
                 {posts.map(post => {
                     return (
                         <PostContainer key={post.id} post={post} addComment={this.addComment} like={this.like}/>
