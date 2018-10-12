@@ -39,13 +39,13 @@ const Dot = styled.div`
 `
 
 const CommentSection = props => {
-    const {likes, comments, timestamp, changeComment} = props;
+    const {likes, comments, timestamp, changeComment, like} = props;
     let time = timestamp.replace("th", "");
 
     return (
         <Comments width="full">
             <FlexRow width="full" style={{marginLeft: "-10px"}}>
-                <img src="like.svg" height={40}/>
+                <img src="like.svg" height={40} style={{cursor: "pointer"}} onClick={() => like()}/>
                 <img src="message.svg" height={40}/>
             </FlexRow>
 

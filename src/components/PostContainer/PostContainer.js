@@ -43,7 +43,7 @@ class PostContainer extends Component {
     }
 
     render() {
-        const {post, addComment} = this.props;
+        const {post, addComment, like} = this.props;
 
         return (
             <Post alignCenter justifyBetween onKeyUp={e => addComment(e, post.id, this.state.comment)}>
@@ -56,7 +56,12 @@ class PostContainer extends Component {
                     <Img url={post.imageUrl}/>
                 </FlexRow>
 
-                <CommentSection likes={post.likes} comments={post.comments} timestamp={post.timestamp} changeComment={e => this.setState({comment: e.target.value})}/>
+                <CommentSection likes={post.likes}
+                                comments={post.comments}
+                                timestamp={post.timestamp}
+                                changeComment={e => this.setState({comment: e.target.value})}
+                                like={() => like(post.id)}
+                />
             </Post>
         );
     }

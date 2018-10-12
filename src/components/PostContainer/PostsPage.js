@@ -6,7 +6,11 @@ import dummyData from '../../data/dummy-data'
 
 class PostsPage extends Component {
     state = {
-        posts: dummyData
+        posts: []
+    };
+
+    componentDidMount() {
+        this.setState(() => ({posts: dummyData}));
     }
 
     addComment = (e, id, comment) => {
@@ -20,6 +24,13 @@ class PostsPage extends Component {
 
     };
 
+    like = id => {
+      let posts = this.state.posts;
+      const ind = posts.findIndex(p => p.id === id);
+      if (ind > -1) posts[ind].likes++;
+      this.setState(() => ({posts: posts}));
+    };
+
     render() {
         const {posts} = this.state;
 
@@ -28,7 +39,7 @@ class PostsPage extends Component {
                 <SearchBar/>
                 {posts.map(post => {
                     return (
-                        <PostContainer key={post.id} post={post} addComment={this.addComment}/>
+                        <PostContainer key={post.id} post={post} addComment={this.addComment} like={this.like}/>
                     )
                 })}
             </>
